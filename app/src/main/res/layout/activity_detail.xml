@@ -55,10 +55,55 @@
         android:gravity="top"
         />
     <LinearLayout
+        android:id="@+id/ly_biaya"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/tv_namalab"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_biaya"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/putih_pucat"
+            android:layout_marginHorizontal="40dp"
+            app:cardCornerRadius="12dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/label_biaya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Biaya : Rp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/biru_tua"
+                    android:textStyle="normal"
+                    android:textSize="24sp"
+                    />
+                <TextView
+                    android:id="@+id/tv_biaya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="22000"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/label_biaya"
+                    android:textSize="46sp"
+                    android:textColor="@color/biru_tua"
+                    android:layout_marginLeft="20dp"
+                    />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/atas"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_below="@+id/tv_namalab"
+        android:layout_below="@+id/ly_biaya"
         android:gravity="center"
         android:layout_marginTop="30dp"
         android:orientation="horizontal">

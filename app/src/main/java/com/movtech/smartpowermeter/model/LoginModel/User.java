@@ -1,0 +1,14 @@
+package com.movtech.smartpowermeter.model.LoginModel;
+
+public class User{
+	private String nama;
+	private String username;
+
+	public String getNama(){
+		return nama;
+	}
+
+	public String getUsername(){
+		return username;
+	}
+}

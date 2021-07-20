@@ -7,6 +7,7 @@
     android:background="@drawable/bg_birutua"
     tools:context=".RegisterActivity">
     <RelativeLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@drawable/ic_bg_header"
@@ -38,11 +39,13 @@
         </RelativeLayout>
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/ly_form"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/header"
         android:layout_centerInParent="true"
         android:padding="30dp"
-        android:layout_marginHorizontal="30dp"
+        android:layout_margin="30dp"
         android:background="@drawable/bg_login">
         <TextView
             android:id="@+id/title_register"
@@ -61,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/title_register"
             android:layout_marginTop="50dp"
-            android:hint="name"
+            android:hint="nama"
             android:drawableLeft="@drawable/ic_outline_person_24"
             android:drawablePadding="6dp"
             android:layout_marginHorizontal="10dp"/>
@@ -71,8 +74,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/et_name"
             android:layout_marginTop="10dp"
-            android:hint="email"
-            android:drawableLeft="@drawable/ic_outline_email_24"
+            android:hint="username"
+            android:drawableLeft="@drawable/ic_username"
             android:drawablePadding="6dp"
             android:layout_marginHorizontal="10dp"/>
         <EditText
@@ -85,6 +88,36 @@
             android:drawableLeft="@drawable/ic_outline_lock_24"
             android:drawablePadding="6dp"
             android:layout_marginHorizontal="10dp"/>
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_password"
+            android:layout_marginTop="10dp"
+            android:hint="alamat email"
+            android:drawableLeft="@drawable/ic_outline_email_24"
+            android:drawablePadding="6dp"
+            android:layout_marginHorizontal="10dp"/>
+        <EditText
+            android:id="@+id/et_telfon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_email"
+            android:layout_marginTop="10dp"
+            android:hint="nomor handphone"
+            android:drawableLeft="@drawable/ic_baseline_phone_android_24"
+            android:drawablePadding="6dp"
+            android:layout_marginHorizontal="10dp"/>
+        <EditText
+            android:id="@+id/et_alamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_telfon"
+            android:layout_marginTop="10dp"
+            android:hint="alamat"
+            android:drawableLeft="@drawable/ic_outline_home_24"
+            android:drawablePadding="6dp"
+            android:layout_marginHorizontal="10dp"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_register"
             android:layout_width="wrap_content"
@@ -92,7 +125,7 @@
             android:text="SIGN UP"
             android:textColor="@color/putih_pucat"
             android:background="@drawable/bg_button_biru"
-            android:layout_below="@+id/et_password"
+            android:layout_below="@+id/et_alamat"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             />
@@ -107,5 +140,6 @@
         android:layout_marginBottom="24dp"
         android:layout_centerHorizontal="true"
         android:textSize="14sp"
+        android:layout_below="@+id/ly_form"
         />
 </RelativeLayout>
