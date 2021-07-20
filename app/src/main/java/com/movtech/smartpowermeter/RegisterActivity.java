@@ -55,7 +55,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("data_user", Context.MODE_PRIVATE);
         mContext = this;
-        mApiService = UtillsApi.getApiService();
 
         id = sharedPreferences.getString("id", null);
         username = sharedPreferences.getString("username", null);

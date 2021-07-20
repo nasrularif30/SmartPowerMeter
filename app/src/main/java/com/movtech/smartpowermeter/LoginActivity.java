@@ -46,7 +46,6 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password);
         sharedPreferences = getSharedPreferences("data_user", Context.MODE_PRIVATE);
         mContext = this;
-        mApiService = UtillsApi.getApiService();
 
         id = sharedPreferences.getString("id", null);
         username = sharedPreferences.getString("username", null);
