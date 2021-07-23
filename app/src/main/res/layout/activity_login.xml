@@ -18,16 +18,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center">
+
             <ImageView
                 android:id="@+id/logo"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_centerVertical="true"
                 android:layout_alignParentLeft="true"
-                android:layout_margin="10dp"
                 android:layout_marginHorizontal="16dp"
-                android:src="@drawable/ic_idea"
-                />
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="48dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_idea" />
+
             <TextView
                 android:layout_toRightOf="@id/logo"
                 android:layout_width="wrap_content"
@@ -63,10 +66,12 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/title_login"
             android:layout_marginTop="50dp"
-            android:hint="email"
-            android:drawableLeft="@drawable/ic_outline_email_24"
+            android:hint="username"
+            android:drawableLeft="@drawable/ic_username"
             android:drawablePadding="6dp"
-            android:layout_marginHorizontal="10dp"/>
+            android:layout_marginHorizontal="10dp"
+            android:singleLine="true"
+            android:maxLines="1"/>
         <EditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
@@ -76,7 +81,11 @@
             android:hint="password"
             android:drawableLeft="@drawable/ic_outline_lock_24"
             android:drawablePadding="6dp"
-            android:layout_marginHorizontal="10dp"/>
+            android:layout_marginHorizontal="10dp"
+            android:singleLine="true"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:password="true"/>
         <TextView
             android:id="@+id/tv_forgot"
             android:layout_width="wrap_content"

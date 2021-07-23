@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,8 @@ public class RegisterActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     Context mContext;
     BaseApiService mApiService;
-    String id, username, nama, password,email,nohp,alamat;
+    String id, username, nama, password,email,alamat, nomor;
+    Long nohp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,13 +48,6 @@ public class RegisterActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password);
         etUsername = findViewById(R.id.et_username);
 
-        username = etUsername.getText().toString();
-        nama = etNama.getText().toString();
-        password = etPassword.getText().toString();
-        email = etEmail.getText().toString();
-        nohp = etNomor.getText().toString();
-        alamat = etAlamat.getText().toString();
-
         sharedPreferences = getSharedPreferences("data_user", Context.MODE_PRIVATE);
         mContext = this;
 
@@ -64,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
         tvSudahPunya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(RegisterActivity.this, MainActivity.class);
+                intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
@@ -72,10 +67,18 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 intent = new Intent(RegisterActivity.this, MainActivity.class);
-                if (username == null || nama == null || password == null || email == null || nohp == null || alamat == null){
+                Log.i("ikiki", "usernaem: "+username+" nama: "+nama+" pass: "+password+" email: "+email+" nohp: "+nohp+" alamat: "+alamat);
+                if (etUsername.getText().toString().isEmpty() || etNama.getText().toString().isEmpty() || etPassword.getText().toString().isEmpty() || etEmail.getText().toString().isEmpty() || etNomor.getText().toString().isEmpty() || etAlamat.getText().toString().isEmpty()){
                     Toast.makeText(RegisterActivity.this, "Data Harus Lengkap!", Toast.LENGTH_LONG).show();
                 }
                 else {
+                    progressDialog = ProgressDialog.show(mContext, null, "Please Wait...");
+                    username = etUsername.getText().toString();
+                    nama = etNama.getText().toString();
+                    password = etPassword.getText().toString();
+                    email = etEmail.getText().toString();
+                    nohp = Long.valueOf(String.valueOf(etNomor.getText()));
+                    alamat = etAlamat.getText().toString();
                     BaseApiService service = RetrofitClient.getClient().create(BaseApiService.class);
                     Call<RegisterResponse> call = service.registerRequest(username, nama, email, password, nohp, alamat);
                     call.enqueue(new Callback<RegisterResponse>() {
@@ -103,7 +106,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<RegisterResponse> call, Throwable t) {
-
+                            progressDialog.dismiss();
+                            Toast.makeText(RegisterActivity.this, "Register Gagal!", Toast.LENGTH_LONG).show();
                         }
                     });
                 }

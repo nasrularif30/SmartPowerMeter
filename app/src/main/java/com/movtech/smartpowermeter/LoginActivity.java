@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +18,9 @@ import com.movtech.smartpowermeter.apihelper.BaseApiService;
 import com.movtech.smartpowermeter.apihelper.RetrofitClient;
 import com.movtech.smartpowermeter.apihelper.UtillsApi;
 import com.movtech.smartpowermeter.model.LoginModel.LoginResponse;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,15 +67,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 progressDialog = ProgressDialog.show(mContext, null, "Please Wait...");
-                if (etUsername.getText() == null || etPassword.getText() != null){
-                    Toast.makeText(mContext, "Username harus diisi!", Toast.LENGTH_LONG).show();
-
-                }
-                else if (etUsername.getText() != null || etPassword.getText() == null){
-                    Toast.makeText(mContext, "Password harus diisi!", Toast.LENGTH_LONG).show();
-
-                }
-                else if (etUsername.getText() == null && etPassword.getText() == null){
+                Log.i("oaoe", "onClick: "+etUsername.getText().toString()+etPassword.getText().toString());
+                if (etUsername.getText().toString().isEmpty() || etPassword.getText().toString().isEmpty()){
+                    progressDialog.dismiss();
                     Toast.makeText(mContext, "Username dan password harus diisi!", Toast.LENGTH_LONG).show();
 
                 }
@@ -85,13 +83,13 @@ public class LoginActivity extends AppCompatActivity {
 
     private void requestLogin(){
         BaseApiService service = RetrofitClient.getClient().create(BaseApiService.class);
-        Call<LoginResponse> call = service.loginRequest(username, password);
+        Call<LoginResponse> call = service.loginRequest(etUsername.getText().toString(), etPassword.getText().toString());
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                 if (response.body().isError()){
                     progressDialog.dismiss();
-                    Toast.makeText(LoginActivity.this, "Login gagal!\nPeriksa username dan password anda", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Login gagal!\nPeriksa username dan password anda\n"+response.message(), Toast.LENGTH_LONG).show();
                 }
                 else {
                     progressDialog.dismiss();
@@ -116,5 +114,41 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         progressDialog.dismiss();
+    }
+    public void checkLogin(View arg0) {
+
+        final String email = etUsername.getText().toString();
+        if (!isValidEmail(email)) {
+            //Set error message for email field
+            etUsername.setError("Invalid Email");
+        }
+
+        final String pass = etPassword.getText().toString();
+        if (!isValidPassword(pass)) {
+            //Set error message for password field
+            etPassword.setError("Password cannot be empty");
+        }
+
+        if(isValidEmail(email) && isValidPassword(pass))
+        {
+            // Validation Completed
+        }
+
+    }
+    private boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    // validating password
+    private boolean isValidPassword(String pass) {
+        if (pass != null && pass.length() >= 4) {
+            return true;
+        }
+        return false;
     }
 }

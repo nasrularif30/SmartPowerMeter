@@ -19,6 +19,6 @@ public interface BaseApiService {
                                           @Field("nama") String nama,
                                           @Field("email") String email,
                                           @Field("password") String password,
-                                          @Field("telfon") String telfon,
+                                          @Field("telfon") long telfon,
                                           @Field("alamat") String alamat);
 }
