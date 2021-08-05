@@ -1,12 +1,16 @@
 package com.movtech.smartpowermeter.apihelper;
 
 import com.movtech.smartpowermeter.model.LoginModel.LoginResponse;
+import com.movtech.smartpowermeter.model.Mon1Phase.Mon1PhaseResponse;
+import com.movtech.smartpowermeter.model.Mon3Phase.Mon3PhaseResponse;
 import com.movtech.smartpowermeter.model.RegisterModel.RegisterResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface BaseApiService {
     @FormUrlEncoded
@@ -19,6 +23,11 @@ public interface BaseApiService {
                                           @Field("nama") String nama,
                                           @Field("email") String email,
                                           @Field("password") String password,
-                                          @Field("telfon") long telfon,
-                                          @Field("alamat") String alamat);
+                                          @Field("telf") long telfon,
+                                          @Field("alamat") String alamat,
+                                          @Field("level") String level);
+    @GET("data.php")
+    Call<Mon1PhaseResponse>getOnePhase(@Query("page")String page);
+    @GET("data.php")
+    Call<Mon3PhaseResponse>getThreePhase(@Query("page")String page);
 }

@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     Context mContext;
     BaseApiService mApiService;
-    String id, username, nama, password,email,alamat, nomor;
+    String id, username, nama, password,email,alamat, level;
     Long nohp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
                     nohp = Long.valueOf(String.valueOf(etNomor.getText()));
                     alamat = etAlamat.getText().toString();
                     BaseApiService service = RetrofitClient.getClient().create(BaseApiService.class);
-                    Call<RegisterResponse> call = service.registerRequest(username, nama, email, password, nohp, alamat);
+                    Call<RegisterResponse> call = service.registerRequest(username, nama, email, password, nohp, alamat, "user");
                     call.enqueue(new Callback<RegisterResponse>() {
                         @Override
                         public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {

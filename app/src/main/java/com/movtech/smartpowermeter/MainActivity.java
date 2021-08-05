@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         pju.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                Intent intent = new Intent(MainActivity.this, Mon3PhaseActivity.class);
                 startActivity(intent);
             }
         });
