@@ -43,15 +43,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="30dp"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginTop="16dp"
         android:layout_below="@+id/lyheader"
-        android:text="Penerangan\nJalan Umum"
+        android:text="Laboratorium Telekomunikasi"
         android:fontFamily="@font/righteousregular"
         android:textColor="@color/putih_pucat"
-        android:textSize="36sp"
+        android:textSize="30dp"
         android:gravity="top"
         />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_mon3phase"
         android:layout_width="match_parent"

@@ -11,7 +11,10 @@
         android:roundIcon="@drawable/ic_idea"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartPowerMeter">
-        <activity android:name=".Mon3PhaseActivity"></activity>
+        <activity
+            android:name=".ActivityTable3Phase"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Mon3PhaseActivity" />
         <activity
             android:name=".Table1Phase"
             android:screenOrientation="landscape" />

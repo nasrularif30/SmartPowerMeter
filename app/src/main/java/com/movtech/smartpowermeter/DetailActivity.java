@@ -2,7 +2,9 @@ package com.movtech.smartpowermeter;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +18,7 @@ import retrofit2.Response;
 
 public class DetailActivity extends AppCompatActivity {
 
-    TextView tvBiaya, tvTegangan, tvArus, tvDaya, tvEnergy;
+    TextView tvBiaya, tvTegangan, tvArus, tvDaya, tvEnergy, tvDetail;
     String nArus, nBiaya, nDaya, nEnergy, nTegangan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,15 @@ public class DetailActivity extends AppCompatActivity {
         tvDaya = findViewById(R.id.tv_daya);
         tvEnergy = findViewById(R.id.tv_energi);
         tvTegangan = findViewById(R.id.tv_tegangan);
+        tvDetail = findViewById(R.id.tv_detail);
 
+        tvDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DetailActivity.this, Table1Phase.class);
+                startActivity(i);
+            }
+        });
         BaseApiService baseApiService = RetrofitClient.getClient().create(BaseApiService.class);
         Call<Mon1PhaseResponse> call = baseApiService.getOnePhase("monitoring_1phase");
         call.enqueue(new Callback<Mon1PhaseResponse>() {

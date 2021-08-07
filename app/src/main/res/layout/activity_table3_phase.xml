@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/putih_pucat"
-    tools:context=".Table1Phase">
-
+    tools:context=".ActivityTable3Phase">
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_title"
         android:layout_width="match_parent"
@@ -168,4 +167,5 @@
         android:layout_margin="6dp"
         android:layout_gravity="center"
         />
+
 </RelativeLayout>

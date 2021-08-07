@@ -45,12 +45,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:layout_below="@+id/lyheader"
-        android:text="Welcome,\nSilfina"
+        android:text="Welcome, Silfina!"
         android:fontFamily="@font/righteousregular"
         android:textColor="@color/putih_pucat"
-        android:textSize="36sp"
+        android:textSize="28sp"
         android:gravity="top"
         />
     <LinearLayout
@@ -59,13 +59,17 @@
         android:layout_below="@+id/welcome"
         android:gravity="center"
         android:layout_marginTop="30dp"
-        android:orientation="horizontal">
+        android:layout_marginHorizontal="10dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
         <androidx.cardview.widget.CardView
             android:id="@+id/labtel"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@color/putih_pucat"
             android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="30dp"
             app:cardCornerRadius="12dp">
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -97,10 +101,12 @@
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
             android:id="@+id/pju"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="200dp"
             android:background="@color/putih_pucat"
             android:layout_marginHorizontal="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
             app:cardCornerRadius="12dp">
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -135,11 +141,12 @@
         android:id="@+id/btn_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/lyheader"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="30dp"
         android:tint="@color/white"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/kuning"
         android:src="@drawable/ic_outline_person_24"
         />
 </RelativeLayout>

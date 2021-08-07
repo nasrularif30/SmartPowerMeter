@@ -48,16 +48,32 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="16dp"
         android:layout_below="@+id/lyheader"
-        android:text="Laboratorium,\nTelekomunikasi"
+        android:text="Penerangan Jalan Umum"
         android:fontFamily="@font/righteousregular"
         android:textColor="@color/putih_pucat"
-        android:textSize="36sp"
+        android:textSize="30sp"
+        android:gravity="top"
+        />
+    <TextView
+        android:id="@+id/tv_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="1dp"
+        android:layout_below="@+id/tv_namalab"
+        android:drawableRight="@drawable/ic_baseline_play_circle_filled_24"
+        android:drawableTint="@color/kuning"
+        android:drawableTintMode="src_atop"
+        android:text="Lihat Detail"
+        android:textColor="@color/putih_pucat"
+        android:textSize="20sp"
         android:gravity="top"
         />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tv_namalab">
+        android:layout_below="@+id/tv_detail">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -67,16 +83,16 @@
             <LinearLayout
                 android:id="@+id/ly_biaya"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="120dp"
                 android:gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="16dp"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_biaya"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="120dp"
                     android:background="@color/putih_pucat"
-                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginHorizontal="20dp"
                     app:cardCornerRadius="12dp">
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -87,19 +103,21 @@
                             android:layout_height="wrap_content"
                             android:text="Biaya : Rp"
                             android:layout_marginLeft="20dp"
-                            android:layout_centerVertical="true"
-                            android:textColor="@color/biru_tua"
+                            android:layout_marginTop="8dp"
+                            android:textColor="#577697"
                             android:textStyle="normal"
                             android:textSize="24sp"
                             />
+
                         <TextView
                             android:id="@+id/tv_biaya"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="22000"
+                            android:fontFamily="@font/righteousregular"
                             android:gravity="center"
                             android:layout_centerVertical="true"
-                            android:layout_toRightOf="@+id/label_biaya"
+                            android:layout_below="@+id/label_biaya"
                             android:textSize="46sp"
                             android:textColor="@color/biru_tua"
                             android:layout_marginLeft="20dp"
@@ -114,14 +132,17 @@
                 android:layout_height="200dp"
                 android:layout_below="@+id/ly_biaya"
                 android:gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:weightSum="2"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_tegangan"
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="200dp"
+                    android:layout_weight="1"
                     android:background="@color/putih_pucat"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginHorizontal="5dp"
                     app:cardCornerRadius="12dp">
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -135,6 +156,7 @@
                             android:text="220.0"
                             android:gravity="center_horizontal"
                             android:textSize="46sp"
+                            android:fontFamily="@font/righteousregular"
                             android:textColor="@color/biru_tua"
                             android:layout_marginTop="20dp"
                             />
@@ -156,10 +178,11 @@
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_arus"
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:background="@color/putih_pucat"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
                     app:cardCornerRadius="12dp">
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -171,6 +194,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="6.50"
+                            android:fontFamily="@font/righteousregular"
                             android:gravity="center_horizontal"
                             android:textSize="46sp"
                             android:textColor="@color/biru_tua"
@@ -198,14 +222,17 @@
                 android:layout_height="200dp"
                 android:layout_below="@+id/atas"
                 android:gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:weightSum="2"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_daya"
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:background="@color/putih_pucat"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
                     app:cardCornerRadius="12dp">
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -217,6 +244,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="10.0"
+                            android:fontFamily="@font/righteousregular"
                             android:gravity="center_horizontal"
                             android:textSize="46sp"
                             android:textColor="@color/biru_tua"
@@ -240,10 +268,11 @@
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cv_energi"
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:background="@color/putih_pucat"
-                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
                     app:cardCornerRadius="12dp">
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -255,6 +284,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="12.50"
+                            android:fontFamily="@font/righteousregular"
                             android:gravity="center_horizontal"
                             android:textSize="46sp"
                             android:textColor="@color/biru_tua"

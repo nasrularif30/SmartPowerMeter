@@ -38,14 +38,14 @@ public class MainActivity extends AppCompatActivity {
         labtel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                Intent intent = new Intent(MainActivity.this, Mon3PhaseActivity.class);
                 startActivity(intent);
             }
         });
         pju.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Mon3PhaseActivity.class);
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
                 startActivity(intent);
             }
         });

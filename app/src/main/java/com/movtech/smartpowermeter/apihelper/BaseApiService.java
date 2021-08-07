@@ -2,7 +2,9 @@ package com.movtech.smartpowermeter.apihelper;
 
 import com.movtech.smartpowermeter.model.LoginModel.LoginResponse;
 import com.movtech.smartpowermeter.model.Mon1Phase.Mon1PhaseResponse;
+import com.movtech.smartpowermeter.model.Mon1PhaseTable.Mon1PhaseTableResponse;
 import com.movtech.smartpowermeter.model.Mon3Phase.Mon3PhaseResponse;
+import com.movtech.smartpowermeter.model.Mon3PhaseTable.Mon3PhaseTableResponse;
 import com.movtech.smartpowermeter.model.RegisterModel.RegisterResponse;
 
 import retrofit2.Call;
@@ -30,4 +32,9 @@ public interface BaseApiService {
     Call<Mon1PhaseResponse>getOnePhase(@Query("page")String page);
     @GET("data.php")
     Call<Mon3PhaseResponse>getThreePhase(@Query("page")String page);
+    @GET("data.php")
+    Call<Mon1PhaseTableResponse>getTable1Phase(@Query("page")String page);
+    @GET("data.php")
+    Call<Mon3PhaseTableResponse>getTable3Phase(@Query("page")String page,
+                                               @Query("phase")String phase);
 }
