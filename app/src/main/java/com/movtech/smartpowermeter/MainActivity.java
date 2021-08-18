@@ -52,17 +52,8 @@ public class MainActivity extends AppCompatActivity {
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean("sudahLogin", false);
-                editor.putString("nama", null);
-                editor.putString("username", null);
-                editor.putString("id", null);
-                editor.apply();
-
-                //Starting login activity
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
     }
