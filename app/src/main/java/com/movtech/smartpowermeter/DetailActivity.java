@@ -52,7 +52,8 @@ public class DetailActivity extends AppCompatActivity {
                     nDaya = response.body().getData().getPower();
                     nEnergy = response.body().getData().getEnergy();
                     nTegangan = response.body().getData().getVoltage();
-
+                    nBiaya = response.body().getData().getBiaya();
+                    tvBiaya.setText("Rp"+nBiaya);
                     tvArus.setText(nArus);
                     tvDaya.setText(nDaya);
                     tvEnergy.setText(nEnergy);

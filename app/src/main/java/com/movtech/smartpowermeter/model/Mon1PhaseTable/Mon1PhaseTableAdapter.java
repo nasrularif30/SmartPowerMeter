@@ -35,6 +35,7 @@ public class Mon1PhaseTableAdapter extends RecyclerView.Adapter<Mon1PhaseTableAd
         holder.txtPower.setText(dataList.get(position).getPower());
         holder.txtEnergy.setText(dataList.get(position).getEnergy());
         holder.txtTime.setText(dataList.get(position).getTime());
+        holder.txtBiaya.setText("Rp"+dataList.get(position).getBiaya());
     }
 
     @Override
@@ -43,11 +44,11 @@ public class Mon1PhaseTableAdapter extends RecyclerView.Adapter<Mon1PhaseTableAd
     }
 
     public class Mon1PhaseTableViewHolder extends RecyclerView.ViewHolder{
-        private TextView txtNo, txtId, txtVoltage, txtArus, txtPower, txtEnergy, txtTime;
+        private TextView txtBiaya, txtId, txtVoltage, txtArus, txtPower, txtEnergy, txtTime;
 
         public Mon1PhaseTableViewHolder(View itemView) {
             super(itemView);
-//            txtNo = itemView.findViewById(R.id.txt_no);
+            txtBiaya = itemView.findViewById(R.id.txt_biaya);
             txtId = itemView.findViewById(R.id.txt_id);
             txtVoltage = itemView.findViewById(R.id.txt_voltage);
             txtArus = itemView.findViewById(R.id.txt_arus);

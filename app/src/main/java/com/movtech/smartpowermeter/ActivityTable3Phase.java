@@ -39,7 +39,8 @@ public class ActivityTable3Phase extends AppCompatActivity {
 
         if (getIntent().hasExtra("phaseName")){
             String phaseName = getIntent().getStringExtra("phaseName");
-            txtTitle.setText("Table Monitoring 3 Phase (Phase "+phaseName+")");
+//            txtTitle.setText("Table Monitoring 3 Phase (Phase "+phaseName+")");
+            txtTitle.setText("Table Monitoring 3 Phase ("+phaseName+")");
             BaseApiService baseApiService = RetrofitClient.getClient().create(BaseApiService.class);
             Call<Mon3PhaseTableResponse> call = baseApiService.getTable3Phase("grafik_3phase", phaseName);
             call.enqueue(new Callback<Mon3PhaseTableResponse>() {

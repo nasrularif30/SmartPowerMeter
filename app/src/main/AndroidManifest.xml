@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartPowerMeter">
         <activity
+            android:name=".ChartActivity"
+            android:screenOrientation="landscape"/>
+        <activity
             android:name=".ActivityTable3Phase"
             android:screenOrientation="landscape" />
         <activity android:name=".Mon3PhaseActivity" />

@@ -47,7 +47,8 @@ public class Mon3PhaseAdapter extends RecyclerView.Adapter<Mon3PhaseAdapter.Mon3
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, ActivityTable3Phase.class);
-                intent.putExtra("phaseName", dataList.get(position).getPhase());
+//                intent.putExtra("phaseName", dataList.get(position).getPhase());
+                intent.putExtra("phaseName", phaseName.get(position));
                 mContext.startActivity(intent);
             }
         });

@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,7 +30,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class Table1Phase extends AppCompatActivity {
-
+    FloatingActionButton fabChart;
     RecyclerView recyclerView;
     Mon1PhaseTableAdapter adapter;
     ArrayList<DataItem> recyclerData = new ArrayList<>();
@@ -39,6 +41,14 @@ public class Table1Phase extends AppCompatActivity {
         setContentView(R.layout.activity_table1_phase);
 
         recyclerView = findViewById(R.id.rv_data);
+        fabChart = findViewById(R.id.btnchart);
+        fabChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Table1Phase.this, ChartActivity.class);
+                startActivity(i);
+            }
+        });
 
         BaseApiService baseApiService = RetrofitClient.getClient().create(BaseApiService.class);
         Call<Mon1PhaseTableResponse> call = baseApiService.getTable1Phase("grafik_1phase");

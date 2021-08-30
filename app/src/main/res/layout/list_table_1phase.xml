@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:rowCount="1"
-            android:columnCount="6"
+            android:columnCount="7"
             android:layout_margin="8dp">
 
 <!--            <TextView-->
@@ -104,6 +104,18 @@
                 android:layout_columnWeight="1"
                 android:textColor="@color/biru_tua"
                 android:text="Time"/>
+            <TextView
+                android:id="@+id/txt_biaya"
+                android:gravity="center_horizontal"
+                android:textSize="14sp"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_row="0"
+                android:layout_column="6"
+                android:layout_gravity="fill"
+                android:layout_columnWeight="1"
+                android:textColor="@color/biru_tua"
+                android:text="Biaya"/>
         </GridLayout>
     </androidx.cardview.widget.CardView>
 

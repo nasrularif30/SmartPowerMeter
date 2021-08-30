@@ -8,6 +8,7 @@ public class Data{
 	private String time;
 	private String voltage;
 	private String energy;
+	private String biaya;
 
 	public String getArus(){
 		return arus;
@@ -35,5 +36,9 @@ public class Data{
 
 	public String getEnergy(){
 		return energy;
+	}
+
+	public String getBiaya() {
+		return biaya;
 	}
 }
