@@ -1,8 +1,8 @@
-package com.movtech.smartpowermeter.model.Mon1PhaseTable;
+package com.movtech.smartpowermeter.model.Mon1PhaseHistory;
 
 import java.util.List;
 
-public class Mon1PhaseTableResponse{
+public class Mon1PhaseHistoryResponse{
 	private List<DataItem> data;
 	private boolean error;
 

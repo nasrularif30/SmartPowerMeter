@@ -1,4 +1,4 @@
-package com.movtech.smartpowermeter.model.Mon3PhaseTable;
+package com.movtech.smartpowermeter.model.Mon3PhaseHistory;
 
 public class DataItem{
 	private String id;

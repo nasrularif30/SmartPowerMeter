@@ -1,25 +1,15 @@
 package com.movtech.smartpowermeter.model.Mon1PhaseTable;
 
 public class DataItem{
-	private String arus;
 	private String id;
-	private String idUser;
 	private String power;
 	private String time;
+	private String ampere;
 	private String voltage;
 	private String energy;
-	private String biaya;
-
-	public String getArus(){
-		return arus;
-	}
 
 	public String getId(){
 		return id;
-	}
-
-	public String getIdUser(){
-		return idUser;
 	}
 
 	public String getPower(){
@@ -30,15 +20,15 @@ public class DataItem{
 		return time;
 	}
 
+	public String getAmpere(){
+		return ampere;
+	}
+
 	public String getVoltage(){
 		return voltage;
 	}
 
 	public String getEnergy(){
 		return energy;
-	}
-
-	public String getBiaya() {
-		return biaya;
 	}
 }

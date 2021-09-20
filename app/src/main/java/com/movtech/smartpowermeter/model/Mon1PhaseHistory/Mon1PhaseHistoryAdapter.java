@@ -1,4 +1,4 @@
-package com.movtech.smartpowermeter.model.Mon1PhaseTable;
+package com.movtech.smartpowermeter.model.Mon1PhaseHistory;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,22 +11,22 @@ import com.movtech.smartpowermeter.R;
 
 import java.util.ArrayList;
 
-public class Mon1PhaseTableAdapter extends RecyclerView.Adapter<Mon1PhaseTableAdapter.Mon1PhaseTableViewHolder> {
-    private ArrayList<DataItem> dataList;
+public class Mon1PhaseHistoryAdapter extends RecyclerView.Adapter<Mon1PhaseHistoryAdapter.Mon1PhaseHistoryViewHolder> {
+    private ArrayList<com.movtech.smartpowermeter.model.Mon1PhaseHistory.DataItem> dataList;
 
-    public Mon1PhaseTableAdapter(ArrayList<DataItem> dataList) {
+    public Mon1PhaseHistoryAdapter(ArrayList<DataItem> dataList) {
         this.dataList = dataList;
     }
 
     @Override
-    public Mon1PhaseTableViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Mon1PhaseHistoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.list_table_1phase, parent, false);
-        return new Mon1PhaseTableViewHolder(view);
+        return new Mon1PhaseHistoryViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(Mon1PhaseTableAdapter.Mon1PhaseTableViewHolder holder, int position) {
+    public void onBindViewHolder(Mon1PhaseHistoryAdapter.Mon1PhaseHistoryViewHolder holder, int position) {
         holder.txtId.setText(dataList.get(position).getId());
         holder.txtVoltage.setText(dataList.get(position).getVoltage());
         holder.txtArus.setText(dataList.get(position).getAmpere());
@@ -40,10 +40,10 @@ public class Mon1PhaseTableAdapter extends RecyclerView.Adapter<Mon1PhaseTableAd
         return (dataList != null) ? dataList.size() : 0;
     }
 
-    public class Mon1PhaseTableViewHolder extends RecyclerView.ViewHolder{
+    public class Mon1PhaseHistoryViewHolder extends RecyclerView.ViewHolder{
         private TextView txtId, txtVoltage, txtArus, txtPower, txtEnergy, txtTime;
 
-        public Mon1PhaseTableViewHolder(View itemView) {
+        public Mon1PhaseHistoryViewHolder(View itemView) {
             super(itemView);
             txtId = itemView.findViewById(R.id.txt_id);
             txtVoltage = itemView.findViewById(R.id.txt_voltage);

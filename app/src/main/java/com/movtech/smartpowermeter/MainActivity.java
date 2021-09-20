@@ -13,19 +13,20 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MainActivity extends AppCompatActivity {
-    CardView labtel, pju;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    CardView labtel, pju, pju2;
     FloatingActionButton btnLogout;
     SharedPreferences sharedPreferences;
     String id, username, nama;
     TextView tvWelcome;
+    static MainActivity mainActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         labtel = findViewById(R.id.labtel);
-        pju = findViewById(R.id.pju);
+        pju = findViewById(R.id.pju1);
         btnLogout = findViewById(R.id.btn_logout);
         sharedPreferences = getSharedPreferences("data_user", Context.MODE_PRIVATE);
         tvWelcome = findViewById(R.id.welcome);
@@ -56,5 +57,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        mainActivity = this;
+    }
+    public static MainActivity getInstance(){
+        return mainActivity;
+    }
+    public void ClickOpen(int i){
+        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+        intent.putExtra("kode",i);
+        startActivity(intent);
+    }
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+            case R.id.pju1 :
+                ClickOpen(1);
+                break;
+        }
     }
 }

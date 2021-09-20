@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Smart Power Meter</string>
+    <string name="about">Aplikasi  Smart Power Meter merupakan aplikasi android dari  project IoT-4-Energy yang dirancang untuk memonitoring penggunaan energi listrik berbasis Internet of Things dan cloud. Sistem monitoring ini dirancang untuk memperoleh data yang berkaitran dengan pengukuran parameter listrik antara lain tegangan, arus, daya, energi. IoT-4-Energy terdiri dari IoT-4-Energy untuk Laboratorium Telekomunikasi menggunakan listrik 3 phase dan IoT-4-Energy untuk Penerangan Jalan Umum menggunakan 1 phase.\n\nKontak Dukungan:\nsilfinazizi@gmail.com\n+6281332910885\n\nPoliteknik Negeri Semarang</string>
 </resources>

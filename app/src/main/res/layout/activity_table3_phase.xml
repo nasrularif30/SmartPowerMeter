@@ -17,16 +17,28 @@
             android:layout_height="match_parent">
             <TextView
                 android:id="@+id/tv_title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Table Monitoring 1 Phase"
+                android:text="Table Monitoring 3 Phase"
                 android:fontFamily="@font/righteousregular"
                 android:gravity="center"
                 android:layout_centerVertical="true"
+                android:layout_marginHorizontal="10dp"
                 android:layout_below="@+id/label_biaya"
                 android:textSize="28sp"
                 android:textColor="@color/biru_tua"
                 />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_history"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginHorizontal="10dp"
+                android:text="History"
+                android:paddingHorizontal="10dp"
+                android:backgroundTint="@color/kuning"
+                android:textColor="@color/biru_tua"/>
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
@@ -37,7 +49,7 @@
         android:backgroundTint="@color/biru_tua"
         app:cardCornerRadius="0dp"
         android:layout_marginHorizontal="10dp"
-        android:layout_marginVertical="10dp"
+        android:layout_marginBottom="2dp"
         android:layout_below="@+id/cv_title"
         app:cardElevation="2dp">
         <GridLayout

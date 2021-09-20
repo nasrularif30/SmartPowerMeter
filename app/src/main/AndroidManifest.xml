@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.movtech.smartpowermeter">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,10 +11,15 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_idea"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SmartPowerMeter">
+        android:theme="@style/Theme.SmartPowerMeter"
+        tools:replace="android:icon">
+        <activity
+            android:name=".DateHistoryActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".AboutActivity" />
         <activity
             android:name=".ChartActivity"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".ActivityTable3Phase"
             android:screenOrientation="landscape" />

@@ -1,32 +1,32 @@
-package com.movtech.smartpowermeter.model.Mon1PhaseTable;
+package com.movtech.smartpowermeter.model.Mon3PhaseHistory;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.movtech.smartpowermeter.R;
 
 import java.util.ArrayList;
 
-public class Mon1PhaseTableAdapter extends RecyclerView.Adapter<Mon1PhaseTableAdapter.Mon1PhaseTableViewHolder> {
-    private ArrayList<DataItem> dataList;
+public class Mon3PhaseHistoryAdapter extends RecyclerView.Adapter<Mon3PhaseHistoryAdapter.Mon3PhaseHistoryViewHolder> {
+    private ArrayList<com.movtech.smartpowermeter.model.Mon3PhaseHistory.DataItem> dataList;
 
-    public Mon1PhaseTableAdapter(ArrayList<DataItem> dataList) {
+    public Mon3PhaseHistoryAdapter(ArrayList<DataItem> dataList) {
         this.dataList = dataList;
     }
 
     @Override
-    public Mon1PhaseTableViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public Mon3PhaseHistoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.list_table_1phase, parent, false);
-        return new Mon1PhaseTableViewHolder(view);
+        View view = layoutInflater.inflate(R.layout.list_table_3phase, parent, false);
+        return new Mon3PhaseHistoryViewHolder(view);
     }
-
     @Override
-    public void onBindViewHolder(Mon1PhaseTableAdapter.Mon1PhaseTableViewHolder holder, int position) {
+    public void onBindViewHolder(Mon3PhaseHistoryViewHolder holder, int position) {
         holder.txtId.setText(dataList.get(position).getId());
         holder.txtVoltage.setText(dataList.get(position).getVoltage());
         holder.txtArus.setText(dataList.get(position).getAmpere());
@@ -40,11 +40,12 @@ public class Mon1PhaseTableAdapter extends RecyclerView.Adapter<Mon1PhaseTableAd
         return (dataList != null) ? dataList.size() : 0;
     }
 
-    public class Mon1PhaseTableViewHolder extends RecyclerView.ViewHolder{
-        private TextView txtId, txtVoltage, txtArus, txtPower, txtEnergy, txtTime;
+    public class Mon3PhaseHistoryViewHolder extends RecyclerView.ViewHolder{
+        private TextView txtNo, txtId, txtVoltage, txtArus, txtPower, txtEnergy, txtTime;
 
-        public Mon1PhaseTableViewHolder(View itemView) {
+        public Mon3PhaseHistoryViewHolder(View itemView) {
             super(itemView);
+//            txtNo = itemView.findViewById(R.id.txt_no);
             txtId = itemView.findViewById(R.id.txt_id);
             txtVoltage = itemView.findViewById(R.id.txt_voltage);
             txtArus = itemView.findViewById(R.id.txt_arus);

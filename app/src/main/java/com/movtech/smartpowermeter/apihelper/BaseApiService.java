@@ -1,9 +1,12 @@
 package com.movtech.smartpowermeter.apihelper;
 
+import com.movtech.smartpowermeter.model.InfoAkun.InfoAkunResponse;
 import com.movtech.smartpowermeter.model.LoginModel.LoginResponse;
 import com.movtech.smartpowermeter.model.Mon1Phase.Mon1PhaseResponse;
+import com.movtech.smartpowermeter.model.Mon1PhaseHistory.Mon1PhaseHistoryResponse;
 import com.movtech.smartpowermeter.model.Mon1PhaseTable.Mon1PhaseTableResponse;
 import com.movtech.smartpowermeter.model.Mon3Phase.Mon3PhaseResponse;
+import com.movtech.smartpowermeter.model.Mon3PhaseHistory.Mon3PhaseHistoryResponse;
 import com.movtech.smartpowermeter.model.Mon3PhaseTable.Mon3PhaseTableResponse;
 import com.movtech.smartpowermeter.model.RegisterModel.RegisterResponse;
 
@@ -33,8 +36,24 @@ public interface BaseApiService {
     @GET("data.php")
     Call<Mon3PhaseResponse>getThreePhase(@Query("page")String page);
     @GET("data.php")
-    Call<Mon1PhaseTableResponse>getTable1Phase(@Query("page")String page);
+    Call<Mon1PhaseTableResponse>getTable1Phase(@Query("page")String page,
+                                               @Query("phase")String phase);
     @GET("data.php")
     Call<Mon3PhaseTableResponse>getTable3Phase(@Query("page")String page,
                                                @Query("phase")String phase);
+    @GET("data.php")
+    Call<InfoAkunResponse>getInfoAkun(@Query("page")String page,
+                                      @Query("user_id") String uid);
+    @GET("data.php")
+    Call<Mon1PhaseHistoryResponse>getHistory1Phase(@Query("page")String page,
+                                                   @Query("type")String type,
+                                                   @Query("phase")String phase,
+                                                   @Query("startDate")String startDate,
+                                                   @Query("endDate")String endDate);
+    @GET("data.php")
+    Call<Mon3PhaseHistoryResponse>getHistory3Phase(@Query("page")String page,
+                                                   @Query("type")String type,
+                                                   @Query("phase")String phase,
+                                                   @Query("startDate")String startDate,
+                                                   @Query("endDate")String endDate);
 }
