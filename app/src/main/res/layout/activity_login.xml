@@ -94,6 +94,7 @@
             android:layout_below="@+id/et_password"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
+            android:visibility="gone"
             android:textSize="10sp"/>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
@@ -102,9 +103,9 @@
             android:text="SIGN IN"
             android:textColor="@color/putih_pucat"
             android:background="@drawable/bg_button_biru"
-            android:layout_below="@+id/tv_forgot"
+            android:layout_below="@+id/et_password"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="60dp"
             />
     </RelativeLayout>
     <TextView
