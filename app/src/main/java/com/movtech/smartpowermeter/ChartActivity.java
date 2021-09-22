@@ -39,8 +39,6 @@ public class ChartActivity extends AppCompatActivity {
             startDate = getIntent.getStringExtra("startDate");
             endDate = getIntent.getStringExtra("endDate");
 
-            phaseName = phaseName.replace("Phase ", "");
-
             Log.i("typpp", "onCreate: "+phase+type+phaseName+startDate+endDate);
 
             WebView view = (WebView) findViewById(R.id.webView);
@@ -58,6 +56,7 @@ public class ChartActivity extends AppCompatActivity {
                             view.loadUrl(url);
                             break;
                         case "3phase":
+                            phaseName = phaseName.replace("Phase ", "");
                             url = "https://iot4energy.id/api/chart.php?need=realtime&type=3phase&phase="+phaseName;
                             view.getSettings().setUseWideViewPort(true);
                             view.getSettings().setLoadWithOverviewMode(true);
@@ -81,6 +80,7 @@ public class ChartActivity extends AppCompatActivity {
                             view.loadUrl(url);
                             break;
                         case "3phase":
+                            phaseName = phaseName.replace("Phase ", "");
                             url = "https://iot4energy.id/api/chart.php?need=history&type=3phase&phase="+phaseName+"&startDate="+startDate+"&endDate="+endDate;
                             Log.i("url3p", "url: "+url);view.getSettings().setUseWideViewPort(true);
                             view.getSettings().setLoadWithOverviewMode(true);
