@@ -59,6 +59,8 @@
         android:layout_below="@+id/tv_namalab">
 
         <RelativeLayout
+            android:id="@+id/ly_3phase"
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="10dp">

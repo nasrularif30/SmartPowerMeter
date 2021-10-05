@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ public class Mon3PhaseActivity extends AppCompatActivity {
     TextView tvEtot, tvDetail;
     CardView cvEtot;
     String type;
+    RelativeLayout ly3phase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +47,7 @@ public class Mon3PhaseActivity extends AppCompatActivity {
 //        tvDetail = findViewById(R.id.tv_detail);
         tvEtot = findViewById(R.id.tv_energy_total);
         cvEtot = findViewById(R.id.cv_energy_total);
+        ly3phase = findViewById(R.id.ly_3phase);
         Intent getIntent = getIntent();
         type = getIntent.getStringExtra("type");
 
@@ -84,6 +87,7 @@ public class Mon3PhaseActivity extends AppCompatActivity {
                     Toast.makeText(Mon3PhaseActivity.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
                 }
                 else {
+                    ly3phase.setVisibility(View.VISIBLE);
                     dataList = response.body().getData().getPhase();
                     for (PhaseItem val: dataList) {
                         phaseName.add(val.getName());
