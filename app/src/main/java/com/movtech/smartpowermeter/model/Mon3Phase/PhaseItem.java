@@ -1,14 +1,14 @@
 package com.movtech.smartpowermeter.model.Mon3Phase;
 
-public class Mon3PhaseResponse{
+public class PhaseItem{
 	private Data data;
-	private boolean error;
+	private String name;
 
 	public Data getData(){
 		return data;
 	}
 
-	public boolean isError(){
-		return error;
+	public String getName(){
+		return name;
 	}
 }

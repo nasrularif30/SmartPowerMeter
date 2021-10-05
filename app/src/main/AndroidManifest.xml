@@ -14,6 +14,10 @@
         android:theme="@style/Theme.SmartPowerMeter"
         tools:replace="android:icon">
         <activity
+            android:name=".ActivityTableEnergy"
+            android:screenOrientation="landscape"
+            android:exported="true" />
+        <activity
             android:name=".DateHistoryActivity"
             android:screenOrientation="landscape" />
         <activity android:name=".AboutActivity" />

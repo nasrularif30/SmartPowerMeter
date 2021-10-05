@@ -1,33 +1,25 @@
 package com.movtech.smartpowermeter.model.Mon3Phase;
 
+import java.util.List;
+
 public class Data{
-	private String phase;
-	private String id;
-	private String idUser;
+	private List<PhaseItem> phase;
+	private String etotal;
 	private String power;
-	private String time;
 	private String ampere;
 	private String voltage;
 	private String energy;
 
-	public String getPhase(){
+	public List<PhaseItem> getPhase(){
 		return phase;
 	}
 
-	public String getId(){
-		return id;
-	}
-
-	public String getIdUser(){
-		return idUser;
+	public String getEtotal(){
+		return etotal;
 	}
 
 	public String getPower(){
 		return power;
-	}
-
-	public String getTime(){
-		return time;
 	}
 
 	public String getAmpere(){

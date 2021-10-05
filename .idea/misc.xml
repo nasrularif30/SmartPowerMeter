@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/PROJECT/Zizi/SmartPowerMeter/app/src/main/res/layout/activity_mon3_phase.xml" value="0.25" />
+        <entry key="..\:/PROJECT/Zizi/SmartPowerMeter/app/src/main/res/layout/activity_table1_phase.xml" value="0.16621376811594202" />
+        <entry key="..\:/PROJECT/Zizi/SmartPowerMeter/app/src/main/res/layout/activity_table3_phase.xml" value="0.16621376811594202" />
+        <entry key="..\:/PROJECT/Zizi/SmartPowerMeter/app/src/main/res/layout/activity_table_energy.xml" value="0.16621376811594202" />
+        <entry key="..\:/PROJECT/Zizi/SmartPowerMeter/app/src/main/res/layout/list_mon3_phase.xml" value="0.16621376811594202" />
+        <entry key="..\:/PROJECT/Zizi/SmartPowerMeter/app/src/main/res/layout/list_table_3phase.xml" value="0.16621376811594202" />
+        <entry key="..\:/PROJECT/Zizi/SmartPowerMeter/app/src/main/res/layout/list_table_etotal.xml" value="0.16621376811594202" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

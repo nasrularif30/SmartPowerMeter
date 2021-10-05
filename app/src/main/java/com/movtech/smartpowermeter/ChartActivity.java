@@ -65,6 +65,15 @@ public class ChartActivity extends AppCompatActivity {
                             view.setInitialScale(1);
                             view.loadUrl(url);
                             break;
+                        case "etot":
+                            url = "https://iot4energy.id/api/chart_etotal.php?need=realtime";
+                            view.getSettings().setUseWideViewPort(true);
+                            view.getSettings().setLoadWithOverviewMode(true);
+                            view.getSettings().setJavaScriptEnabled(true);
+                            view.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+                            view.setInitialScale(1);
+                            view.loadUrl(url);
+                            break;
                     }
                     break;
                 case "history":
@@ -83,6 +92,16 @@ public class ChartActivity extends AppCompatActivity {
                             phaseName = phaseName.replace("Phase ", "");
                             url = "https://iot4energy.id/api/chart.php?need=history&type=3phase&phase="+phaseName+"&startDate="+startDate+"&endDate="+endDate;
                             Log.i("url3p", "url: "+url);view.getSettings().setUseWideViewPort(true);
+                            view.getSettings().setLoadWithOverviewMode(true);
+                            view.getSettings().setJavaScriptEnabled(true);
+                            view.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+                            view.setInitialScale(1);
+                            view.loadUrl(url);
+                            break;
+                        case "etot":
+                            url = "https://iot4energy.id/api/chart_etotal.php?need=history&startDate="+startDate+"&endDate="+endDate;
+                            Log.i("url1p", "url: "+url);
+                            view.getSettings().setUseWideViewPort(true);
                             view.getSettings().setLoadWithOverviewMode(true);
                             view.getSettings().setJavaScriptEnabled(true);
                             view.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);

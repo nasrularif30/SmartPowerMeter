@@ -103,6 +103,14 @@ public class DateHistoryActivity extends AppCompatActivity {
                             i31.putExtra("type", "history");
                             startActivity(i31);
                             break;
+                        case "etot":
+                            Intent ie = new Intent(DateHistoryActivity.this, ActivityTableEnergy.class);
+                            ie.putExtra("startDate", startDate);
+                            ie.putExtra("endDate", endDate);
+                            ie.putExtra("phase", "etot");
+                            ie.putExtra("type", "history");
+                            startActivity(ie);
+                            break;
 
                     }
 

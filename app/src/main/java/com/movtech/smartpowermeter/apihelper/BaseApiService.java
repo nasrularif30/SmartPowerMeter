@@ -1,5 +1,6 @@
 package com.movtech.smartpowermeter.apihelper;
 
+import com.movtech.smartpowermeter.model.EnergyTotal.TableEnergyTotalRealtimeResponse;
 import com.movtech.smartpowermeter.model.InfoAkun.InfoAkunResponse;
 import com.movtech.smartpowermeter.model.LoginModel.LoginResponse;
 import com.movtech.smartpowermeter.model.Mon1Phase.Mon1PhaseResponse;
@@ -35,6 +36,12 @@ public interface BaseApiService {
     Call<Mon1PhaseResponse>getOnePhase(@Query("page")String page);
     @GET("data.php")
     Call<Mon3PhaseResponse>getThreePhase(@Query("page")String page);
+    @GET("data.php")
+    Call<TableEnergyTotalRealtimeResponse>getTableEnergyTotal(@Query("page")String page);
+    @GET("data.php")
+    Call<TableEnergyTotalRealtimeResponse>getTableEnergyTotalHistory(@Query("page")String page,
+                                                                     @Query("startDate")String startDate,
+                                                                     @Query("endDate")String endDate);
     @GET("data.php")
     Call<Mon1PhaseTableResponse>getTable1Phase(@Query("page")String page,
                                                @Query("phase")String phase);
