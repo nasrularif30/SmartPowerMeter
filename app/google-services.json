@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "499492087148",
+    "project_id": "smart-power-meter-a09bc",
+    "storage_bucket": "smart-power-meter-a09bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:499492087148:android:306148933248a7cfeb7f49",
+        "android_client_info": {
+          "package_name": "com.movtech.smartpowermeter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "499492087148-d3fk1n4vh3t8u1qbe60a4iopqpvcirnq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCraSzt0XjD1onWd2sOpiPwn_Vkfd14QY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "499492087148-d3fk1n4vh3t8u1qbe60a4iopqpvcirnq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
