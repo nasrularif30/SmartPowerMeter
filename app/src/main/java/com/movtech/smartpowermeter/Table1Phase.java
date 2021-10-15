@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
@@ -45,6 +46,9 @@ public class Table1Phase extends AppCompatActivity {
     List<com.movtech.smartpowermeter.model.Mon1PhaseHistory.DataItem> dataListHistory;
     ArrayList<com.movtech.smartpowermeter.model.Mon1PhaseHistory.DataItem> recyclerHistoryData = new ArrayList<>();
     String type, startDate, endDate;
+    Handler handler = new Handler();
+    Runnable refresh;
+    public static final int refreshtime = 5000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,85 +68,93 @@ public class Table1Phase extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        BaseApiService baseApiService = RetrofitClient.getClient().create(BaseApiService.class);
-        switch (type){
-            case ("realtime"):
-                fabChart.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(Table1Phase.this, ChartActivity.class);
-                        i.putExtra("type","realtime");
-                        i.putExtra("phase", "1phase");
-                        startActivity(i);
-                    }
-                });
-                Call<Mon1PhaseTableResponse> call = baseApiService.getTable1Phase("grafik_1phase", "LSTR001");
-                call.enqueue(new Callback<Mon1PhaseTableResponse>() {
-                    @Override
-                    public void onResponse(Call<Mon1PhaseTableResponse> call, Response<Mon1PhaseTableResponse> response) {
-                        if (response.body().isError()){
-                            Toast.makeText(Table1Phase.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
-                        }
-                        else {
-                            dataList = response.body().getData();
-                            for (DataItem val: dataList) {
-                                recyclerData.add(val);
+        refresh = new Runnable() {
+            public void run() {
+
+                BaseApiService baseApiService = RetrofitClient.getClient().create(BaseApiService.class);
+                switch (type){
+                    case ("realtime"):
+                        fabChart.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent i = new Intent(Table1Phase.this, ChartActivity.class);
+                                i.putExtra("type","realtime");
+                                i.putExtra("phase", "1phase");
+                                startActivity(i);
                             }
-                            adapter = new Mon1PhaseTableAdapter(recyclerData);
-                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Table1Phase.this);
-                            recyclerView.setLayoutManager(layoutManager);
-                            recyclerView.setAdapter(adapter);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Mon1PhaseTableResponse> call, Throwable t) {
-                        Toast.makeText(Table1Phase.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
-
-                    }
-                });
-                break;
-            case ("history"):
-                startDate = intent.getStringExtra("startDate");
-                endDate = intent.getStringExtra("endDate");
-                fabChart.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(Table1Phase.this, ChartActivity.class);
-                        i.putExtra("type","history");
-                        i.putExtra("phase", "1phase");
-                        i.putExtra("startDate", startDate);
-                        i.putExtra("endDate", endDate);
-                        startActivity(i);
-                    }
-                });
-                Call<Mon1PhaseHistoryResponse> callHistory = baseApiService.getHistory1Phase("grafik_bydate", "1phase","LSTR001", startDate, endDate);
-                callHistory.enqueue(new Callback<Mon1PhaseHistoryResponse>() {
-                    @Override
-                    public void onResponse(Call<Mon1PhaseHistoryResponse> call, Response<Mon1PhaseHistoryResponse> response) {
-                        if (response.body().isError()){
-                            Toast.makeText(Table1Phase.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
-                        }
-                        else {
-                            dataListHistory = response.body().getData();
-                            for (com.movtech.smartpowermeter.model.Mon1PhaseHistory.DataItem val: dataListHistory) {
-                                recyclerHistoryData.add(val);
+                        });
+                        Call<Mon1PhaseTableResponse> call = baseApiService.getTable1Phase("grafik_1phase", "LSTR001");
+                        call.enqueue(new Callback<Mon1PhaseTableResponse>() {
+                            @Override
+                            public void onResponse(Call<Mon1PhaseTableResponse> call, Response<Mon1PhaseTableResponse> response) {
+                                if (response.body().isError()){
+                                    Toast.makeText(Table1Phase.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
+                                }
+                                else {
+                                    dataList = response.body().getData();
+                                    for (DataItem val: dataList) {
+                                        recyclerData.add(val);
+                                    }
+                                    adapter = new Mon1PhaseTableAdapter(recyclerData);
+                                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Table1Phase.this);
+                                    recyclerView.setLayoutManager(layoutManager);
+                                    recyclerView.setAdapter(adapter);
+                                }
                             }
-                            historyAdapter = new Mon1PhaseHistoryAdapter(recyclerHistoryData);
-                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Table1Phase.this);
-                            recyclerView.setLayoutManager(layoutManager);
-                            recyclerView.setAdapter(historyAdapter);
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(Call<Mon1PhaseHistoryResponse> call, Throwable t) {
-                        Toast.makeText(Table1Phase.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
+                            @Override
+                            public void onFailure(Call<Mon1PhaseTableResponse> call, Throwable t) {
+                                Toast.makeText(Table1Phase.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
 
-                    }
-                });
-                break;
-        }
+                            }
+                        });
+                        break;
+                    case ("history"):
+                        startDate = intent.getStringExtra("startDate");
+                        endDate = intent.getStringExtra("endDate");
+                        fabChart.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent i = new Intent(Table1Phase.this, ChartActivity.class);
+                                i.putExtra("type","history");
+                                i.putExtra("phase", "1phase");
+                                i.putExtra("startDate", startDate);
+                                i.putExtra("endDate", endDate);
+                                startActivity(i);
+                            }
+                        });
+                        Call<Mon1PhaseHistoryResponse> callHistory = baseApiService.getHistory1Phase("grafik_bydate", "1phase","LSTR001", startDate, endDate);
+                        callHistory.enqueue(new Callback<Mon1PhaseHistoryResponse>() {
+                            @Override
+                            public void onResponse(Call<Mon1PhaseHistoryResponse> call, Response<Mon1PhaseHistoryResponse> response) {
+                                if (response.body().isError()){
+                                    Toast.makeText(Table1Phase.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
+                                }
+                                else {
+                                    dataListHistory = response.body().getData();
+                                    for (com.movtech.smartpowermeter.model.Mon1PhaseHistory.DataItem val: dataListHistory) {
+                                        recyclerHistoryData.add(val);
+                                    }
+                                    historyAdapter = new Mon1PhaseHistoryAdapter(recyclerHistoryData);
+                                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Table1Phase.this);
+                                    recyclerView.setLayoutManager(layoutManager);
+                                    recyclerView.setAdapter(historyAdapter);
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Mon1PhaseHistoryResponse> call, Throwable t) {
+                                Toast.makeText(Table1Phase.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+                        break;
+                }
+
+                handler.postDelayed(refresh, refreshtime);
+            }
+        };
+        handler.post(refresh);
 
     }
 }

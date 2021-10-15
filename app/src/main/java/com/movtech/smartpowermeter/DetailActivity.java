@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,11 +17,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.movtech.smartpowermeter.Table1Phase.refreshtime;
+
 public class DetailActivity extends AppCompatActivity {
 
     TextView tvBiaya, tvTegangan, tvArus, tvDaya, tvEnergy, tvDetail;
     String nArus, nBiaya, nDaya, nEnergy, nTegangan;
     String type;
+
+    Handler handler = new Handler();
+    Runnable refresh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +39,10 @@ public class DetailActivity extends AppCompatActivity {
         tvTegangan = findViewById(R.id.tv_tegangan);
         tvDetail = findViewById(R.id.tv_detail);
 
-        Intent intent = getIntent();
-        type = intent.getStringExtra("type");
+        refresh = new Runnable() {
+            public void run() {
+                Intent intent = getIntent();
+                type = intent.getStringExtra("type");
 
                 tvDetail.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -71,6 +79,10 @@ public class DetailActivity extends AppCompatActivity {
                         Toast.makeText(DetailActivity.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
                     }
                 });
+                handler.postDelayed(refresh, refreshtime);
+            }
+        };
+        handler.post(refresh);
 
     }
 }

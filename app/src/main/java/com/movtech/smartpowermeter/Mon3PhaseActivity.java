@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -28,6 +29,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.movtech.smartpowermeter.Table1Phase.refreshtime;
+
 public class Mon3PhaseActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     Mon3PhaseAdapter adapter;
@@ -38,27 +41,19 @@ public class Mon3PhaseActivity extends AppCompatActivity {
     CardView cvEtot;
     String type;
     RelativeLayout ly3phase;
+    Handler handler = new Handler();
+    Runnable refresh;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mon3_phase);
 
         recyclerView = findViewById(R.id.recycler_mon3phase);
-//        tvDetail = findViewById(R.id.tv_detail);
         tvEtot = findViewById(R.id.tv_energy_total);
         cvEtot = findViewById(R.id.cv_energy_total);
         ly3phase = findViewById(R.id.ly_3phase);
         Intent getIntent = getIntent();
         type = getIntent.getStringExtra("type");
-
-//        tvDetail.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(Mon3PhaseActivity.this, ActivityTableEnergy.class);
-//                intent.putExtra("type", "realtime");
-//                startActivity(intent);
-//            }
-//        });
 
         cvEtot.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,35 +73,43 @@ public class Mon3PhaseActivity extends AppCompatActivity {
             }
         });
 
-        BaseApiService baseApiService = RetrofitClient.getClient().create(BaseApiService.class);
-        Call<Mon3PhaseResponse> call = baseApiService.getThreePhase("monitoring_3phase");
-        call.enqueue(new Callback<Mon3PhaseResponse>() {
-            @Override
-            public void onResponse(Call<Mon3PhaseResponse> call, Response<Mon3PhaseResponse> response) {
-                if (response.body().isError()){
-                    Toast.makeText(Mon3PhaseActivity.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
-                }
-                else {
-                    ly3phase.setVisibility(View.VISIBLE);
-                    dataList = response.body().getData().getPhase();
-                    for (PhaseItem val: dataList) {
-                        phaseName.add(val.getName());
-                        recyclerData.add(val.getData());
+        refresh = new Runnable() {
+            public void run() {
+
+                BaseApiService baseApiService = RetrofitClient.getClient().create(BaseApiService.class);
+                Call<Mon3PhaseResponse> call = baseApiService.getThreePhase("monitoring_3phase");
+                call.enqueue(new Callback<Mon3PhaseResponse>() {
+                    @Override
+                    public void onResponse(Call<Mon3PhaseResponse> call, Response<Mon3PhaseResponse> response) {
+                        if (response.body().isError()){
+                            Toast.makeText(Mon3PhaseActivity.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            ly3phase.setVisibility(View.VISIBLE);
+                            dataList = response.body().getData().getPhase();
+                            for (PhaseItem val: dataList) {
+                                phaseName.add(val.getName());
+                                recyclerData.add(val.getData());
+                            }
+                            tvEtot.setText(response.body().getData().getEtotal().toString());
+                            adapter = new Mon3PhaseAdapter(Mon3PhaseActivity.this, recyclerData, phaseName);
+                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Mon3PhaseActivity.this);
+                            recyclerView.setLayoutManager(layoutManager);
+                            recyclerView.setAdapter(adapter);
+                        }
                     }
-                    tvEtot.setText(response.body().getData().getEtotal().toString());
-                    adapter = new Mon3PhaseAdapter(Mon3PhaseActivity.this, recyclerData, phaseName);
-                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Mon3PhaseActivity.this);
-                    recyclerView.setLayoutManager(layoutManager);
-                    recyclerView.setAdapter(adapter);
-                }
-            }
 
-            @Override
-            public void onFailure(Call<Mon3PhaseResponse> call, Throwable t) {
-                Toast.makeText(Mon3PhaseActivity.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
+                    @Override
+                    public void onFailure(Call<Mon3PhaseResponse> call, Throwable t) {
+                        Toast.makeText(Mon3PhaseActivity.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
 
+                    }
+                });
+
+                handler.postDelayed(refresh, refreshtime);
             }
-        });
+        };
+        handler.post(refresh);
     }
 
 }

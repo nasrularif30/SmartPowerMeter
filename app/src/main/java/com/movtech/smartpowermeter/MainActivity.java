@@ -1,5 +1,6 @@
 package com.movtech.smartpowermeter;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -7,11 +8,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     CardView labtel, pju, pju2;
@@ -25,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getFCMToken();
+        FirebaseMessaging.getInstance().subscribeToTopic("splu");
         labtel = findViewById(R.id.labtel);
         pju = findViewById(R.id.pju1);
         btnLogout = findViewById(R.id.btn_logout);
@@ -75,5 +84,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 ClickOpen(1);
                 break;
         }
+
     }
+    private void getFCMToken(){
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String token = instanceIdResult.getToken();
+                Log.i("FireBaseToken", "Firebase Token : " + token);
+//                getDeviceToken(token);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.i("FireBaseToken", "onFailure : " + e.toString());
+            }
+        });
+    }
+
 }
