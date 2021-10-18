@@ -69,9 +69,6 @@ public class ActivityTable3Phase extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        refresh = new Runnable() {
-            public void run() {
                 switch (type){
                     case "realtime":
                         fabChart.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +81,8 @@ public class ActivityTable3Phase extends AppCompatActivity {
                                 startActivity(intent);
                             }
                         });
+                        refresh = new Runnable() {
+                            public void run() {
                         if (getIntent().hasExtra("phaseName")){
                             String phaseName = getIntent().getStringExtra("phaseName");
                             txtTitle.setText("Table Monitoring 3 Phase ("+phaseName+")");
@@ -96,6 +95,7 @@ public class ActivityTable3Phase extends AppCompatActivity {
                                         Toast.makeText(ActivityTable3Phase.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
                                     }
                                     else {
+                                        recyclerData.clear();
                                         dataList = response.body().getData();
                                         for (DataItem val: dataList) {
                                             recyclerData.add(val);
@@ -113,6 +113,10 @@ public class ActivityTable3Phase extends AppCompatActivity {
                                 }
                             });
                         }
+                        handler.postDelayed(refresh, refreshtime);
+                            }
+                        };
+                        handler.post(refresh);
 
                         break;
                     case "history":
@@ -161,10 +165,7 @@ public class ActivityTable3Phase extends AppCompatActivity {
                         }
                         break;
                 }
-                handler.postDelayed(refresh, refreshtime);
-            }
-        };
-        handler.post(refresh);
+
 
     }
 }

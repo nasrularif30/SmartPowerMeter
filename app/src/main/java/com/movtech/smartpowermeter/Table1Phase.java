@@ -68,8 +68,6 @@ public class Table1Phase extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        refresh = new Runnable() {
-            public void run() {
 
                 BaseApiService baseApiService = RetrofitClient.getClient().create(BaseApiService.class);
                 switch (type){
@@ -83,31 +81,37 @@ public class Table1Phase extends AppCompatActivity {
                                 startActivity(i);
                             }
                         });
-                        Call<Mon1PhaseTableResponse> call = baseApiService.getTable1Phase("grafik_1phase", "LSTR001");
-                        call.enqueue(new Callback<Mon1PhaseTableResponse>() {
-                            @Override
-                            public void onResponse(Call<Mon1PhaseTableResponse> call, Response<Mon1PhaseTableResponse> response) {
-                                if (response.body().isError()){
-                                    Toast.makeText(Table1Phase.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
-                                }
-                                else {
-                                    dataList = response.body().getData();
-                                    for (DataItem val: dataList) {
-                                        recyclerData.add(val);
+                        refresh = new Runnable() {
+                            public void run() {
+                                Call<Mon1PhaseTableResponse> call = baseApiService.getTable1Phase("grafik_1phase", "LSTR001");
+                                call.enqueue(new Callback<Mon1PhaseTableResponse>() {
+                                    @Override
+                                    public void onResponse(Call<Mon1PhaseTableResponse> call, Response<Mon1PhaseTableResponse> response) {
+                                        if (response.body().isError()){
+                                            Toast.makeText(Table1Phase.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
+                                        }
+                                        else {
+                                            recyclerData.clear();
+                                            dataList = response.body().getData();
+                                            for (DataItem val: dataList) {
+                                                recyclerData.add(val);
+                                            }
+                                            adapter = new Mon1PhaseTableAdapter(recyclerData);
+                                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Table1Phase.this);
+                                            recyclerView.setLayoutManager(layoutManager);
+                                            recyclerView.setAdapter(adapter);
+                                        }
                                     }
-                                    adapter = new Mon1PhaseTableAdapter(recyclerData);
-                                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Table1Phase.this);
-                                    recyclerView.setLayoutManager(layoutManager);
-                                    recyclerView.setAdapter(adapter);
-                                }
-                            }
 
-                            @Override
-                            public void onFailure(Call<Mon1PhaseTableResponse> call, Throwable t) {
-                                Toast.makeText(Table1Phase.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
+                                    @Override
+                                    public void onFailure(Call<Mon1PhaseTableResponse> call, Throwable t) {
 
+                                    }
+                                });
+                                handler.postDelayed(refresh, refreshtime);
                             }
-                        });
+                        };
+                        handler.post(refresh);
                         break;
                     case ("history"):
                         startDate = intent.getStringExtra("startDate");
@@ -144,17 +148,11 @@ public class Table1Phase extends AppCompatActivity {
 
                             @Override
                             public void onFailure(Call<Mon1PhaseHistoryResponse> call, Throwable t) {
-                                Toast.makeText(Table1Phase.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
 
                             }
                         });
                         break;
                 }
-
-                handler.postDelayed(refresh, refreshtime);
-            }
-        };
-        handler.post(refresh);
 
     }
 }

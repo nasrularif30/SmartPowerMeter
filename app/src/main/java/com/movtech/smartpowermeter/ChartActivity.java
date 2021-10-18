@@ -48,15 +48,10 @@ public class ChartActivity extends AppCompatActivity {
 
         WebView view = (WebView) findViewById(R.id.webView);
 
-
-        refresh = new Runnable() {
-            public void run() {
-
-                handler.post(refresh);
-                switch (type){
-                    case "realtime":
-                        switch (phase){
-                            case "1phase":
+        switch (type){
+            case "realtime":
+                switch (phase){
+                    case "1phase":
                                 url = "https://iot4energy.id/api/chart.php?need=realtime&type=1phase&phase=LSTR001";
                                 view.getSettings().setUseWideViewPort(true);
                                 view.getSettings().setLoadWithOverviewMode(true);
@@ -64,25 +59,33 @@ public class ChartActivity extends AppCompatActivity {
                                 view.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
                                 view.setInitialScale(1);
                                 view.loadUrl(url);
-                                break;
-                            case "3phase":
-                                phaseName = phaseName.replace("Phase ", "");
-                                url = "https://iot4energy.id/api/chart.php?need=realtime&type=3phase&phase="+phaseName;
-                                view.getSettings().setUseWideViewPort(true);
-                                view.getSettings().setLoadWithOverviewMode(true);
-                                view.getSettings().setJavaScriptEnabled(true);
-                                view.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-                                view.setInitialScale(1);
-                                view.loadUrl(url);
-                                break;
+                        break;
+                        case "3phase":
+                                    handler.post(refresh);
+                                    phaseName = phaseName.replace("Phase ", "");
+                                    url = "https://iot4energy.id/api/chart.php?need=realtime&type=3phase&phase="+phaseName;
+                                    Log.i("url3p", "url: "+url);view.getSettings().setUseWideViewPort(true);
+                                    view.getSettings().setUseWideViewPort(true);
+                                    view.getSettings().setLoadWithOverviewMode(true);
+                                    view.getSettings().setJavaScriptEnabled(true);
+                                    view.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+                                    view.setInitialScale(1);
+                                    view.loadUrl(url);
+                            break;
                             case "etot":
-                                url = "https://iot4energy.id/api/chart_etotal.php?need=realtime";
-                                view.getSettings().setUseWideViewPort(true);
-                                view.getSettings().setLoadWithOverviewMode(true);
-                                view.getSettings().setJavaScriptEnabled(true);
-                                view.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-                                view.setInitialScale(1);
-                                view.loadUrl(url);
+                                refresh = new Runnable() {
+                                    public void run() {
+                                        handler.post(refresh);
+                                        url = "https://iot4energy.id/api/chart_etotal.php?need=realtime";
+                                        view.getSettings().setUseWideViewPort(true);
+                                        view.getSettings().setLoadWithOverviewMode(true);
+                                        view.getSettings().setJavaScriptEnabled(true);
+                                        view.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+                                        view.setInitialScale(1);
+                                        view.loadUrl(url);
+                                        handler.postDelayed(refresh, 15000);
+                                    }
+                                };
                                 break;
                         }
                         break;
@@ -121,9 +124,6 @@ public class ChartActivity extends AppCompatActivity {
                         }
                         break;
                 }
-                handler.postDelayed(refresh, refreshtime);
-            }
-        };
 
     }
 }

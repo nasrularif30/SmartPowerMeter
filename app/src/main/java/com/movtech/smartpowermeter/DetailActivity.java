@@ -39,19 +39,19 @@ public class DetailActivity extends AppCompatActivity {
         tvTegangan = findViewById(R.id.tv_tegangan);
         tvDetail = findViewById(R.id.tv_detail);
 
+        Intent intent = getIntent();
+        type = intent.getStringExtra("type");
+
+        tvDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DetailActivity.this, Table1Phase.class);
+                i.putExtra("type","realtime");
+                startActivity(i);
+            }
+        });
         refresh = new Runnable() {
             public void run() {
-                Intent intent = getIntent();
-                type = intent.getStringExtra("type");
-
-                tvDetail.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(DetailActivity.this, Table1Phase.class);
-                        i.putExtra("type","realtime");
-                        startActivity(i);
-                    }
-                });
                 BaseApiService baseApiService = RetrofitClient.getClient().create(BaseApiService.class);
                 Call<Mon1PhaseResponse> call = baseApiService.getOnePhase("monitoring_1phase");
                 call.enqueue(new Callback<Mon1PhaseResponse>() {

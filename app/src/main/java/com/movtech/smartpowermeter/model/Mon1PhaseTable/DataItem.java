@@ -4,7 +4,7 @@ public class DataItem{
 	private String id;
 	private String power;
 	private String time;
-	private String ampere;
+	private String arus;
 	private String voltage;
 	private String energy;
 
@@ -20,8 +20,8 @@ public class DataItem{
 		return time;
 	}
 
-	public String getAmpere(){
-		return ampere;
+	public String getArus(){
+		return arus;
 	}
 
 	public String getVoltage(){

@@ -61,9 +61,6 @@ public class ActivityTableEnergy extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        refresh = new Runnable() {
-            public void run() {
-
                 BaseApiService baseApiService = RetrofitClient.getClient().create(BaseApiService.class);
                 switch (type){
                     case "realtime":
@@ -76,6 +73,8 @@ public class ActivityTableEnergy extends AppCompatActivity {
                                 startActivity(i);
                             }
                         });
+                        refresh = new Runnable() {
+                            public void run() {
                         Call<TableEnergyTotalRealtimeResponse> call = baseApiService.getTableEnergyTotal("energi_total");
                         call.enqueue(new Callback<TableEnergyTotalRealtimeResponse>() {
                             @Override
@@ -100,6 +99,10 @@ public class ActivityTableEnergy extends AppCompatActivity {
 
                             }
                         });
+                        handler.postDelayed(refresh, refreshtime);
+                }
+            };
+        handler.post(refresh);
                         break;
                     case "history":
                         fabChart.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +124,7 @@ public class ActivityTableEnergy extends AppCompatActivity {
                                     Toast.makeText(ActivityTableEnergy.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
                                 }
                                 else {
+                                    recyclerData.clear();
                                     dataList = response.body().getData();
                                     for (DataItem val: dataList) {
                                         recyclerData.add(val);
@@ -140,9 +144,5 @@ public class ActivityTableEnergy extends AppCompatActivity {
                         break;
                 }
 
-                handler.postDelayed(refresh, refreshtime);
-            }
-        };
-        handler.post(refresh);
     }
 }

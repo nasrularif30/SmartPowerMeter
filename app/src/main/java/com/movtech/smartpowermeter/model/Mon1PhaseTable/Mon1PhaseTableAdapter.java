@@ -29,7 +29,7 @@ public class Mon1PhaseTableAdapter extends RecyclerView.Adapter<Mon1PhaseTableAd
     public void onBindViewHolder(Mon1PhaseTableAdapter.Mon1PhaseTableViewHolder holder, int position) {
         holder.txtId.setText(dataList.get(position).getId());
         holder.txtVoltage.setText(dataList.get(position).getVoltage());
-        holder.txtArus.setText(dataList.get(position).getAmpere());
+        holder.txtArus.setText(dataList.get(position).getArus());
         holder.txtPower.setText(dataList.get(position).getPower());
         holder.txtEnergy.setText(dataList.get(position).getEnergy());
         holder.txtTime.setText(dataList.get(position).getTime());

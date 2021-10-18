@@ -85,6 +85,8 @@ public class Mon3PhaseActivity extends AppCompatActivity {
                             Toast.makeText(Mon3PhaseActivity.this, "Gagal mengambil data!", Toast.LENGTH_LONG).show();
                         }
                         else {
+                            recyclerData.clear();
+                            phaseName.clear();
                             ly3phase.setVisibility(View.VISIBLE);
                             dataList = response.body().getData().getPhase();
                             for (PhaseItem val: dataList) {
